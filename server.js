@@ -3,7 +3,7 @@ const app = express();
 const cors = require('cors');
 const PORT = 8000;
 
-app.use(cors);
+app.use(cors());
 
 let yokai = {
   'pandle' : {
@@ -2100,6 +2100,15 @@ let yokai = {
     'yokaiPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/8/8a/Kage_Orochi.jpg/revision/latest/scale-to-width-down/150',
     'medalliumBio'  : "Venoct's shadow, skilled in the deadly arts. Few who learn that he exists live long after that."
   },
+  'unknown' : {
+    'name'  : 'unknown',
+    'tribe' : 'n/a',
+    'medalPic'  : '#',
+    'medalPicThumb' : '#',
+    'yokaiPic'  : '#',
+    'yokaiPicThumb' : '#',
+    'medalliumBio'  : 'Unknown Yokai is not in Medallium.'
+  }
 }
 
 
@@ -2109,10 +2118,13 @@ app.get('/', (request, response) => {
   response.sendFile(__dirname + '/index.html');
 })
 
-app.get('/api/yokaiWatchApi/:yokaiName', (request, response) => {
+app.get('/api/yokai/:yokaiName', (request, response) => {
   const yokaiNm = request.params.yokaiName.toLowerCase();
-  console.log(yokaiNm)
-  response.json(yokaiWatchApi[yokaiNm]);
+  if (yokai[yokaiNm]) {
+    response.json(yokai[yokaiNm]);
+  } else {
+    response.json(yokai['unknown']);
+  }
 })
 
 app.listen(PORT, () => {
