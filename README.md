@@ -13,7 +13,9 @@
 
 - I plan to add more information about each Yo-kai as I am able
 
-#### :nerd_face: Tech Stuff:
+- If you haven't watched Yo-kai Watch you're really missing out. Check it out on ![Netflix](https://www.netflix.com/title/80106136)
+
+#### Tech Stuff:
 
 - This API was created using node.js and Express
 
