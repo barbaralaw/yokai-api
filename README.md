@@ -5,15 +5,15 @@
 
 
 
-###:construction: This API is actively under construction! ###
+### :construction: This API is actively under construction! ###
 
-##### Some Notes:
+#### Some Notes:
 
 - Only Yo-kai that were released as part of the 'normal' medal range are currently included
 
 - I plan to add more information about each Yo-kai as I am able
 
-##### Improvements/Optimizations coming:
+#### Improvements/Optimizations coming:
 
 - Documentation! I want this API to be easily navigated by all fans
 
