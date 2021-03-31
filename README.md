@@ -22,10 +22,10 @@
 
 ### :star: Try it Out
 
-- API is live at: ![Heroku API page]('https://yokai-api.herokuapp.com/')
+- API is live at: ![Heroku API page](https://yokai-api.herokuapp.com/)
 
-- Initial client side page is live at: ![Client side page]('https://yokaiapi.netlify.app/')
+- Initial client side page is live at: ![Client side page](https://yokaiapi.netlify.app/)
 
 ### :blush: Thank you!
 
-Please check out the rest of my ![Github](https://github.com/barbaralaw) and my Yo-kai Watch client side repo ![here]('https://github.com/barbaralaw/clientYokai').
+Please check out the rest of my ![Github](https://github.com/barbaralaw) and my Yo-kai Watch client side repo ![here](https://github.com/barbaralaw/clientYokai).
