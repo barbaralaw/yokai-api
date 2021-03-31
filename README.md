@@ -13,6 +13,12 @@
 
 - I plan to add more information about each Yo-kai as I am able
 
+#### :nerd_face: Tech Stuff:
+
+- This API was created using node.js and Express
+
+- Working with the backend is new for me, and I chose to learn by diving in the deepend with this API. It has been an education to be sure. I look forward to continuing to explore this part of my tech stack.
+
 #### Improvements/Optimizations coming:
 
 - Documentation! I want this API to be easily navigated by all fans
