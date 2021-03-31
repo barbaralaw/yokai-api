@@ -5,14 +5,33 @@ const PORT = 8000;
 
 app.use(cors());
 
+
+app.get('/', (request, response) => {
+  response.sendFile(__dirname + '/index.html');
+})
+
+app.get('/api/yokai/:yokaiName', (request, response) => {
+  const yokaiNm = request.params.yokaiName.toLowerCase();
+  if (yokai[yokaiNm]) {
+    response.json(yokai[yokaiNm]);
+  } else {
+    response.json(yokai['unknown']);
+  }
+})
+
+app.listen(process.env.PORT || PORT, () => {
+  console.log(`Serving running on port ${PORT}`)
+})
+
+
 let yokai = {
   'pandle' : {
     'name'  : 'Pandle',
     'tribe' : 'Brave',
     'effect'  : 'Those inspirited by Pandle will become very careless.',
-    'medalPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/a/ae/Tanbo_NM.jpg',
+    'medalPic'  : 'https://i.ibb.co/zHH1M8f/Pandle-NM.jpg',
     'medalPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/6/6e/Pandle_NM.jpg/revision/latest/scale-to-width-down/150',
-    'yokaiPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/8/83/Pandle_Artwork.png',
+    'yokaiPic'  : 'https://i.ibb.co/rxDYcWL/Pandle-Artwork.png',
     'yokaiPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/8/83/Pandle_Artwork.png/revision/latest/scale-to-width-down/150',
     'medalliumBio'  : 'A careless Yo-kai who enters battle wearing only a loincloth...and a pan...on his head. Try not to take after him so much.'
   },
@@ -20,9 +39,9 @@ let yokai = {
     'name'  : 'Undy',
     'tribe' : 'Brave',
     'effect'  : 'Those inpirited by Undy will lower their defenses.',
-    'medalPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/3/3d/Undy_TM.jpg',
+    'medalPic'  : 'https://i.ibb.co/xSHKGtL/Undy-TM.jpg',
     'medalPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/3/3d/Undy_TM.jpg/revision/latest/scale-to-width-down/150',
-    'yokaiPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/4/4b/Undy_Artwork.png',
+    'yokaiPic'  : 'https://i.ibb.co/p4CzkH1/Undy-Artwork.png',
     'yokaiPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/4/4b/Undy_Artwork.png/revision/latest/scale-to-width-down/150',
     'medalliumBio'  : `Having abandoned the pan, Undy is pretty much bare to the world. That aside, you won't ever see him wince or bruise.`
   },
@@ -30,9 +49,9 @@ let yokai = {
     'name'  : 'Tanbo',
     'tribe' : 'Brave',
     'effect'  : 'Those inspirited by Tanbo become gutsy and take action without thinking.',
-    'medalPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/a/ae/Tanbo_NM.jpg',
+    'medalPic'  : 'https://i.ibb.co/c8Y9yQ3/Tanbo-NM.jpg',
     'medalPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/a/ae/Tanbo_NM.jpg/revision/latest/scale-to-width-down/150',
-    'yokaiPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/2/2a/Tanbo_official_art.png',
+    'yokaiPic'  : 'https://i.ibb.co/SV01zQT/Tanbo-official-art.png',
     'yokaiPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/2/2a/Tanbo_official_art.png/revision/latest/scale-to-width-down/150',
     'medalliumBio'  : `A Yo-kai who is always first to the battle! With nothing to slow him down, he shows up early and always has a nice tan.`
   },
@@ -40,9 +59,9 @@ let yokai = {
     'name'  : 'Benkei',
     'tribe' : 'Brave',
     'effect'  : 'Those inspirited by Benkei will act clumsily',
-    'medalPic' : 'https://static.wikia.nocookie.net/yokaiwatch/images/c/c2/Benkei_NM.jpg',
+    'medalPic' : 'https://i.ibb.co/WHjyDX0/Benkei-NM.jpg',
     'medalPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/c/c2/Benkei_NM.jpg/revision/latest/scale-to-width-down/150',
-    'yokaiPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/e/e1/Benkei2.png',
+    'yokaiPic'  : 'https://i.ibb.co/9gppDKL/Benkei2.png',
     'yokaiPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/e/e1/Benkei2.png/revision/latest/scale-to-width-down/150',
     'medalliumBio'  : `Hiding 999 weapons from fallen foes in his stomach, Benkei can call any one of them out in a moment of need.`
   },
@@ -50,9 +69,9 @@ let yokai = {
     'name'  : 'B3-NK1',
     'tribe' : 'Brave',
     'effect'  : 'Those inspirited by B3-NK1 are affected in unknown ways.',
-    'medalPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/9/9c/B3-NK1_NM.jpg',
+    'medalPic'  : 'https://i.ibb.co/PQd5MPJ/B3-NK1-NM.jpg',
     'medalPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/9/9c/B3-NK1_NM.jpg/revision/latest/scale-to-width-down/150',
-    'yokaiPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/b/be/B3NK1_Artwork.png',
+    'yokaiPic'  : 'https://i.ibb.co/s2Spxbj/B3-NK1-Artwork.png',
     'yokaiPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/b/be/B3NK1_Artwork.png/revision/latest/scale-to-width-down/150',
     'medalliumBio'  : `Hiding 999 weapons from fallen foes in his stomach, Benkei can call any one of them out in a moment of need.`
   },
@@ -60,9 +79,9 @@ let yokai = {
     'name'  : 'Sushiyama',
     'tribe' : 'Brave',
     'effect'  : 'Those inspirited by Sushiyama fully embrace traditional Japanese culture and lifestyle.',
-    'medalPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/7/75/Sushiyama_NM.jpg',
+    'medalPic'  : 'https://i.ibb.co/KxTfjw2/Sushiyama-NM.jpg',
     'medalPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/7/75/Sushiyama_NM.jpg/revision/latest/scale-to-width-down/150',
-    'yokaiPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/1/11/Sushiyama_Art.jpg',
+    'yokaiPic'  : 'https://i.ibb.co/4PdnH1w/Sushiyama-Art.jpg',
     'yokaiPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/1/11/Sushiyama_Art.jpg/revision/latest/scale-to-width-down/150',
     'medalliumBio'  : `A Yo-kai who desperately wants to be Japanese. He sleeps on a futon and eats only sushi. I think he might be doing it wrong...`
   },
@@ -70,9 +89,9 @@ let yokai = {
     'name'  : 'Kapunki',
     'tribe' : 'Brave',
     'effect'  : 'Those inspirited by Kapunki are affected in unknown ways.',
-    'medalPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/8/81/Kapunki_NM.jpg',
+    'medalPic'  : 'https://i.ibb.co/Hx9H5bx/Kapunki-NM.jpg',
     'medalPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/8/81/Kapunki_NM.jpg/revision/latest/scale-to-width-down/150',
-    'yokaiPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/a/a4/Kapunki_Art.jpg',
+    'yokaiPic'  : 'https://i.ibb.co/F7gs6mW/Kapunki-Art.jpg',
     'yokaiPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/a/a4/Kapunki_Art.jpg/revision/latest/scale-to-width-down/150',
     'medalliumBio'  : `A punk Yo-kai who wears a kabuki-style makeup. He dreams of rocking the socks and faces off his fans all across the globe.`
   },
@@ -80,9 +99,9 @@ let yokai = {
     'name'  : 'Beetler',
     'tribe' : 'Brave',
     'effect'  : 'Those inspirited by Beetler are affected in unknown ways.',
-    'medalPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/b/b2/Beetler_NM.jpg',
+    'medalPic'  : 'https://i.ibb.co/gwwXLW9/Beetler-NM.jpg',
     'medalPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/b/b2/Beetler_NM.jpg/revision/latest/scale-to-width-down/150',
-    'yokaiPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/0/0d/Kuwano-Bushi.png',
+    'yokaiPic'  : 'https://i.ibb.co/SKxMSy6/Kuwano-Bushi.png',
     'yokaiPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/0/0d/Kuwano-Bushi.png/revision/latest/scale-to-width-down/150',
     'medalliumBio'  : `Beetler is a young battler who fights with his horns and his fists. He trains with his rival, Rhinoggin.`
   },
@@ -90,9 +109,9 @@ let yokai = {
     'name'  : 'Beetall',
     'tribe' : 'Brave',
     'effect'  : 'Those inspirited by Beetall are affected in unknown ways.',
-    'medalPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/d/d8/Beetall_NM.jpg',
+    'medalPic'  : 'https://i.ibb.co/rtF1Nw5/Beetall-NM.jpg',
     'medalPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/d/d8/Beetall_NM.jpg/revision/latest/scale-to-width-down/150',
-    'yokaiPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/c/cf/Kuwaga-Taishou.png',
+    'yokaiPic'  : 'https://i.ibb.co/3F29tJt/Kuwaga-Taishou.png',
     'yokaiPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/c/cf/Kuwaga-Taishou.png/revision/latest/scale-to-width-down/150',
     'medalliumBio'  : `If Beetler bashes baddies in a bevy of brutal battles, the result will be a big-bodied Beetall.`
   },
@@ -100,9 +119,9 @@ let yokai = {
     'name'  : 'Cruncha',
     'tribe' : 'Brave',
     'effect'  : 'Those inspirited by Cruncha are affected in unknown ways.',
-    'medalPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/8/82/Cruncha_NM.jpg',
+    'medalPic'  : 'https://i.ibb.co/DgQ6vTX/Cruncha-NM.jpg',
     'medalPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/8/82/Cruncha_NM.jpg/revision/latest/scale-to-width-down/150',
-    'yokaiPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/e/e3/Cruncha_Art.png',
+    'yokaiPic'  : 'https://i.ibb.co/MRv5g7s/Cruncha-Art.png',
     'yokaiPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/e/e3/Cruncha_Art.png/revision/latest/scale-to-width-down/150',
     'medalliumBio'  : `A stag beetle Yo-kai that represent the apex of the thorax. He can grant you incredible strength.`
   },
@@ -110,9 +129,9 @@ let yokai = {
     'name'  : 'Cutta-nah',
     'tribe' : 'Brave',
     'effect'  : 'Those inspirited by Cutta-nah slack off.',
-    'medalPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/3/39/Cutta-nah_NM.jpg',
+    'medalPic'  : 'https://i.ibb.co/0VpHhH1/Cutta-nah-NM.jpg',
     'medalPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/3/39/Cutta-nah_NM.jpg/revision/latest/scale-to-width-down/150',
-    'yokaiPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/3/3a/Cutta-nah.png',
+    'yokaiPic'  : 'https://i.ibb.co/KFRCk3X/Cutta-nah.png',
     'yokaiPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/3/3a/Cutta-nah.png/revision/latest/scale-to-width-down/150',
     'medalliumBio'  : `A lazy katana Yo-kai that can drain all of your motivation. He's strangely sharp for being so lazy.`
   },
@@ -120,9 +139,9 @@ let yokai = {
     'name'  : 'Cutta-nah-nah',
     'tribe' : 'Brave',
     'effect'  : 'Those inspirited by Cutta-nah-nah are affected in unknown ways.',
-    'medalPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/e/e7/Cutta-nah-nah_NM.jpg',
+    'medalPic'  : 'https://i.ibb.co/Ntqjy3K/Cutta-nah-nah-NM.jpg',
     'medalPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/e/e7/Cutta-nah-nah_NM.jpg/revision/latest/scale-to-width-down/150',
-    'yokaiPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/d/d3/Zanbaratou.png',
+    'yokaiPic'  : 'https://i.ibb.co/SRw6Jw8/Zanbaratou.png',
     'yokaiPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/d/d3/Zanbaratou.png/revision/latest/scale-to-width-down/150',
     'medalliumBio'  : `Too lazy to get a haircut, but not too lazy to slash enemies with his untidy strands.`
   },
@@ -130,9 +149,9 @@ let yokai = {
     'name'  : 'Slacka-slash',
     'tribe' : 'Brave',
     'effect'  : 'Those inspirited by Slacka-slash either achieve something to the highest or fail miserably.',
-    'medalPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/f/f3/Slacka-slash_NM.jpg',
+    'medalPic'  : 'https://i.ibb.co/sqWtZn6/Slacka-slash-NM.jpg',
     'medalPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/f/f3/Slacka-slash_NM.jpg/revision/latest/scale-to-width-down/150',
-    'yokaiPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/b/b3/Slacka-slash.png',
+    'yokaiPic'  : 'https://i.ibb.co/pbM5Kyq/Slacka-slash.png',
     'yokaiPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/b/b3/Slacka-slash.png/revision/latest/scale-to-width-down/150',
     'medalliumBio'  : `More dangerous than he looks, Slacka-slash can beat his foes with only a single slice.`
   },
@@ -140,9 +159,9 @@ let yokai = {
     'name'  : 'Zerberker',
     'tribe' : 'Brave',
     'effect'  : 'Those inspirited by Zerberker explode with rage.',
-    'medalPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/f/f9/Zerberker_NM.jpg',
+    'medalPic'  : 'https://i.ibb.co/Y7wZfkJ/Zerberker-NM.jpg',
     'medalPicThumb'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/f/f9/Zerberker_NM.jpg/revision/latest/scale-to-width-down/150',
-    'yokaiPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/0/0f/Kushamusha2.png',
+    'yokaiPic'  : 'https://i.ibb.co/DY59ZrH/Kushamusha2.png',
     'yokaiPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/0/0f/Kushamusha2.png/revision/latest/scale-to-width-down/150',
     'medalliumBio'  : `Legend has it that this Yo-kai leveled an entire village with one tantrum. You'll explode with rage if he's around.`
   },
@@ -150,9 +169,9 @@ let yokai = {
     'name'  : 'Snartle',
     'tribe' : 'Brave',
     'effect'  : 'Snartle attacks misbehaving kids to teach them a lesson.',
-    'medalPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/e/e1/Snartle_NM.jpg',
+    'medalPic'  : 'https://i.ibb.co/3YZ6cMf/Snartle-NM.jpg',
     'medalPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/e/e1/Snartle_NM.jpg/revision/latest/scale-to-width-down/150',
-    'yokaiPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/8/81/Namahage.png',
+    'yokaiPic'  : 'https://i.ibb.co/34vqgdt/Namahage.png',
     'yokaiPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/8/81/Namahage.png/revision/latest/scale-to-width-down/150',
     'medalliumBio'  : `This Yo-kai visits homes asking 'Any brats here?' It's a way of scaring kids into behaving well. Kind of like a reverse Santa.`
   },
@@ -160,9 +179,9 @@ let yokai = {
     'name'  : 'Mochismo',
     'tribe' : 'Brave',
     'effect'  : 'Those inspirited by Mochismo experience bouts of super strength.',
-    'medalPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/2/2b/Mochismo_NM.jpg',
+    'medalPic'  : 'https://i.ibb.co/s9SGPsB/Mochismo-NM.jpg',
     'medalPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/2/2b/Mochismo_NM.jpg/revision/latest/scale-to-width-down/150',
-    'yokaiPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/e/ec/Mochismo_Official_Artwork.png',
+    'yokaiPic'  : 'https://i.ibb.co/FDyJvLS/Mochismo-Official-Artwork.png',
     'yokaiPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/e/ec/Mochismo_Official_Artwork.png/revision/latest/scale-to-width-down/150',
     'medalliumBio'  : `He's cute most of the time, but when he's mad, his body cracks and his manly face pops out.`
   },
@@ -170,9 +189,9 @@ let yokai = {
     'name'  : 'Minochi',
     'tribe' : 'Brave',
     'effect'  : 'Those inspirited by Minochi become irrationally jealous.',
-    'medalPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/a/a2/Minochi_NM.jpg',
+    'medalPic'  : 'https://i.ibb.co/8scvpgL/Minochi-NM.jpg',
     'medalPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/a/a2/Minochi_NM.jpg/revision/latest/scale-to-width-down/150',
-    'yokaiPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/6/67/Minochi_Art.png',
+    'yokaiPic'  : 'https://i.ibb.co/frnkmcj/Minochi-Art.png',
     'yokaiPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/6/67/Minochi_Art.png/revision/latest/scale-to-width-down/150',
     'medalliumBio'  : `When he's in love, he gets overly protective of his partner. He can make you a very jealous person.`
   },
@@ -180,9 +199,9 @@ let yokai = {
     'name'  : 'Helmsman',
     'tribe' : 'Brave',
     'effect'  : 'Those inspirited by Helmsman are given head protection from damage.',
-    'medalPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/5/5e/Helmsman_NM.jpg',
+    'medalPic'  : 'https://i.ibb.co/F4cfgbb/Helmsman-NM.jpg',
     'medalPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/5/5e/Helmsman_NM.jpg/revision/latest/scale-to-width-down/150',
-    'yokaiPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/4/48/Kabutosan.png',
+    'yokaiPic'  : 'https://i.ibb.co/s5Yczzn/Kabutosan.png',
     'yokaiPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/4/48/Kabutosan.png/revision/latest/scale-to-width-down/150',
     'medalliumBio'  : `A floating helmet that was worn by a famous military commander. It spends its time searching for its armor-- a good use of time.`
   },
@@ -190,9 +209,9 @@ let yokai = {
     'name'  : 'Reuknight',
     'tribe' : 'Brave',
     'effect'  : 'Those inspirited by Reuknight are affected in unknown ways.',
-    'medalPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/8/8d/Reuknight_NM.jpg',
+    'medalPic'  : 'https://i.ibb.co/VBBZ97Q/Reuknight-NM.jpg',
     'medalPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/8/8d/Reuknight_NM.jpg/revision/latest/scale-to-width-down/150',
-    'yokaiPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/f/f2/Reuknight2.png',
+    'yokaiPic'  : 'https://i.ibb.co/b6BmZpY/Reuknight2.png',
     'yokaiPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/f/f2/Reuknight2.png/revision/latest/scale-to-width-down/150',
     'medalliumBio'  : `Helmsman and Armsman reunited. He now aspires to do what he couldn't do when he was alive; unify the country.`
   },
@@ -200,9 +219,9 @@ let yokai = {
     'name'  : 'Corptain',
     'tribe' : 'Brave',
     'effect'  : 'Those inspirited by Corptain are affected in unknown ways.',
-    'medalPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/6/6b/Corptain_NM.jpg',
+    'medalPic'  : 'https://i.ibb.co/VTYpRBX/Corptain-NM.jpg',
     'medalPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/6/6b/Corptain_NM.jpg/revision/latest/scale-to-width-down/150',
-    'yokaiPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/5/55/Corptain2.png',
+    'yokaiPic'  : 'https://i.ibb.co/SVXPtbW/Corptain2.png',
     'yokaiPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/5/55/Corptain2.png/revision/latest/scale-to-width-down/150',
     'medalliumBio'  : `A popular leader when he was alive, Corptain leads an army of souls even after death. Now that's charisma!`
   },
@@ -210,9 +229,9 @@ let yokai = {
     'name'  : 'Blazion',
     'tribe' : 'Brave',
     'effect'  : 'Those inspirited by Blazion are affected in unknown ways.',
-    'medalPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/2/25/Blazion_NM.jpg',
+    'medalPic'  : 'https://i.ibb.co/0ZjG7Fr/Blazion-NM.jpg',
     'medalPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/2/25/Blazion_NM.jpg/revision/latest/scale-to-width-down/150',
-    'yokaiPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/7/7b/Blazion.png',
+    'yokaiPic'  : 'https://i.ibb.co/z4wKPsH/Blazion.png',
     'yokaiPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/7/7b/Blazion.png/revision/latest/scale-to-width-down/150',
     'medalliumBio'  : `The king of beasts with a mane of fire! This hot-blooded Yo-kai fills folks with fiery enthusiasm.`
   },
@@ -220,9 +239,9 @@ let yokai = {
     'name'  : 'Quaken',
     'tribe' : 'Brave',
     'effect'  : 'Those inspirited by Quaken can be cheered from even the saddest feeling.',
-    'medalPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/c/cc/Quaken_NM.jpg',
+    'medalPic'  : 'https://i.ibb.co/sb0PFL4/Quaken-NM.jpg',
     'medalPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/c/cc/Quaken_NM.jpg/revision/latest/scale-to-width-down/150',
-    'yokaiPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/3/30/Quaken_Art.png',
+    'yokaiPic'  : 'https://i.ibb.co/920Z3XR/Quaken-Art.png',
     'yokaiPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/3/30/Quaken_Art.png/revision/latest/scale-to-width-down/150',
     'medalliumBio'  : `Every step Quaken takes shakes the place... and some of those vibrations can even move your heart. Awwwww!`
   },
@@ -230,9 +249,9 @@ let yokai = {
     'name'  : 'Siro',
     'tribe' : 'Brave',
     'effect'  : 'Those inspirited by Siro are at their best, shining lights for the future.',
-    'medalPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/b/b9/Siro_NM.jpg',
+    'medalPic'  : 'https://i.ibb.co/bKS35JY/Siro-NM.jpg',
     'medalPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/b/b9/Siro_NM.jpg/revision/latest/scale-to-width-down/150',
-    'yokaiPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/7/77/Siro-0.png',
+    'yokaiPic'  : 'https://i.ibb.co/9tM73bh/Siro-0.png',
     'yokaiPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/7/77/Siro-0.png/revision/latest/scale-to-width-down/150',
     'medalliumBio'  : `Siro brings out the best in those he inspirits. They become shining lights for the future.`
   },
@@ -240,9 +259,9 @@ let yokai = {
     'name'  : 'Chansin',
     'tribe' : 'Brave',
     'effect'  : 'Those inspirited by Chansin become obsessed with challenges, no matter how ridiculous.',
-    'medalPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/5/51/Chansin_NM.jpg',
+    'medalPic'  : 'https://i.ibb.co/Nm22053/Chansin-NM.jpg',
     'medalPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/5/51/Chansin_NM.jpg/revision/latest/scale-to-width-down/150',
-    'yokaiPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/b/b9/Chansin2.png',
+    'yokaiPic'  : 'https://i.ibb.co/prVhrfL/Chansin2.png',
     'yokaiPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/b/b9/Chansin2.png/revision/latest/scale-to-width-down/150',
     'medalliumBio'  : `Once a proud warrior, Chansin threw it all away by gambling...Now his best odds are to retreat.`
   },
@@ -250,9 +269,9 @@ let yokai = {
     'name'  : 'Sheen',
     'tribe' : 'Brave',
     'effect'  : 'Those inspirited by Sheen are affected in unknown ways.',
-    'medalPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/6/6a/Sheen_NM.jpg',
+    'medalPic'  : 'https://i.ibb.co/mhxmkxV/Exif-JPEG-PICTURE.jpg',
     'medalPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/6/6a/Sheen_NM.jpg/revision/latest/scale-to-width-down/150',
-    'yokaiPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/d/d9/Sheen2.png',
+    'yokaiPic'  : 'https://i.ibb.co/7kdDhXd/Sheen2.png',
     'yokaiPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/d/d9/Sheen2.png/revision/latest/scale-to-width-down/150',
     'medalliumBio'  : `A Yo-kai swordsman who returned to the way of the sword when a legendary blade reignited his spirit.`
   },
@@ -260,9 +279,9 @@ let yokai = {
     'name'  : 'Snee',
     'tribe' : 'Brave',
     'effect'  : `Snee's blade makes him crave blood, so he sneaks up on people to get some.`,
-    'medalPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/5/52/Snee_NM.jpg',
+    'medalPic'  : 'https://i.ibb.co/zNFwJmp/Snee-NM.jpg',
     'medalPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/5/52/Snee_NM.jpg/revision/latest/scale-to-width-down/150',
-    'yokaiPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/2/20/Snee2.png',
+    'yokaiPic'  : 'https://i.ibb.co/r7pvDmy/Snee2.png',
     'yokaiPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/2/20/Snee2.png/revision/latest/scale-to-width-down/150',
     'medalliumBio'  : `Cursed by his demon blade, Snee searches the world for blood. He excels at silently sneaking up on his enemies.`
   },
@@ -270,9 +289,9 @@ let yokai = {
     'name'  : 'Gleam',
     'tribe' : 'Brave',
     'effect'  : 'Those inspirited by Gleam are affected in unknown ways.',
-    'medalPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/8/81/Gleam_NM.jpg',
+    'medalPic'  : 'https://i.ibb.co/hMLKJpT/Gleam-NM.jpg',
     'medalPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/8/81/Gleam_NM.jpg/revision/latest/scale-to-width-down/150',
-    'yokaiPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/e/e7/Gleam2.png',
+    'yokaiPic'  : 'https://i.ibb.co/rdQxsMh/Gleam2.png',
     'yokaiPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/e/e7/Gleam2.png/revision/latest/scale-to-width-down/150',
     'medalliumBio'  : `A swordsman who takes justice in his hands, using a sword from God. That sword is said to cut through evil and have world peace.`
   },
@@ -280,9 +299,9 @@ let yokai = {
     'name'  : 'Shogunyan',
     'tribe' : 'Brave',
     'effect'  : 'Those inspirited by Shogunyan are affected in unknown ways.',
-    'medalPic' : 'https://static.wikia.nocookie.net/yokaiwatch/images/8/83/Shogunyan_NM.jpg',
+    'medalPic' : 'https://i.ibb.co/RcRHW4p/Shogunyan-NM.jpg',
     'medalPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/8/83/Shogunyan_NM.jpg/revision/latest/scale-to-width-down/150',
-    'yokaiPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/9/93/Shogunyan.png',
+    'yokaiPic'  : 'https://i.ibb.co/n1dJL1Y/Shogunyan.png',
     'yokaiPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/9/93/Shogunyan.png/revision/latest/scale-to-width-down/150',
     'medalliumBio'  : `Jibanyan turned into a legendary warrior. He just loves skipjack tuna and carries it around in his armor.`
   },
@@ -290,9 +309,9 @@ let yokai = {
     'name'  : 'Snotsolong',
     'tribe' : 'Mysterious',
     'effect'  : 'Those inspirited by Snotsolong are plagued with an absurdly runny nose.',
-    'medalPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/4/45/Snotsolong_NM.jpg',
+    'medalPic'  : 'https://i.ibb.co/s5bSX7Q/Snotsolong-NM.jpg',
     'medalPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/4/45/Snotsolong_NM.jpg/revision/latest/scale-to-width-down/150',
-    'yokaiPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/8/8d/Snotsolong2.png',
+    'yokaiPic'  : 'https://i.ibb.co/6YJPXzJ/Snotsolong2.png',
     'yokaiPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/8/8d/Snotsolong2.png/revision/latest/scale-to-width-down/150',
     'medalliumBio'  : `A crane Yo-kai with an insanely runny nose. He's scared his drippings will make him too heavy to fly...I'd be scared, too.`
   },
@@ -300,9 +319,9 @@ let yokai = {
     'name'  : 'Duchoo',
     'tribe' : 'Mysterious',
     'effect'  : `Those inspirited by Duchoo can trick people into thinking they're sick.`,
-    'medalPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/3/36/Duchoo_NM.jpg',
+    'medalPic'  : 'https://i.ibb.co/7nLTLsq/Duchoo-NM.jpg',
     'medalPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/3/36/Duchoo_NM.jpg/revision/latest/scale-to-width-down/150',
-    'yokaiPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/f/f4/Duchoo_Art.jpg',
+    'yokaiPic'  : 'https://i.ibb.co/4dFNV0T/Duchoo-Art.jpg',
     'yokaiPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/f/f4/Duchoo_Art.jpg/revision/latest/scale-to-width-down/150',
     'medalliumBio'  : `Ever felt like you might be sick, but you're not totally sure if you are? Blame Duchoo.`
   },
@@ -310,9 +329,9 @@ let yokai = {
     'name'  : `D'wanna`,
     'tribe' : 'Mysterious',
     'effect'  : `Those inspirited by D'Wanna abruptly decide to stop doing what they were doing, as if bored.`,
-    'medalPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/6/60/D%27wanna_NM.jpg',
+    'medalPic'  : 'https://i.ibb.co/5jb2gzJ/D-wanna-NM.jpg',
     'medalPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/6/60/D%27wanna_NM.jpg/revision/latest/scale-to-width-down/150',
-    'yokaiPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/d/d6/D%27wanna_Art.png',
+    'yokaiPic'  : 'https://i.ibb.co/jWRVF5L/D-wanna-Art.png',
     'yokaiPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/d/d6/D%27wanna_Art.png/revision/latest/scale-to-width-down/150',
     'medalliumBio'  : `D'wanna's chants will weaken your resolve! This can make you give up on... y'know, stuff and whatever.`
   },
@@ -320,9 +339,9 @@ let yokai = {
     'name'  : `N'more`,
     'tribe' : 'Mysterious',
     'effect'  : `Those inspirited by N'More become lazy, grow bored easily, and sigh constantly.`,
-    'medalPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/6/65/N%27more_NM.jpg',
+    'medalPic'  : 'https://i.ibb.co/g6YhpMY/N-more-NM.jpg',
     'medalPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/6/65/N%27more_NM.jpg/revision/latest/scale-to-width-down/150',
-    'yokaiPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/e/eb/Nmore.png',
+    'yokaiPic'  : 'https://i.ibb.co/KbwtYBX/Nmore.png',
     'yokaiPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/e/eb/Nmore.png/revision/latest/scale-to-width-down/150',
     'medalliumBio'  : `N'more gets bored of things quickly. Some say his cool brows and beard grew from his boredom with shaving.`
   },
@@ -330,9 +349,9 @@ let yokai = {
     'name'  : `Q'wit`,
     'tribe' : 'Mysterious',
     'effect'  : `Those inspirited by Q'wit will quit whatever they're doing, no matter how excited they were about doing it.`,
-    'medalPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/2/23/Q%27wit_NM.jpg',
+    'medalPic'  : 'https://i.ibb.co/Vg9rKM1/Q-wit-NM.jpg.jpg',
     'medalPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/2/23/Q%27wit_NM.jpg/revision/latest/scale-to-width-down/150',
-    'yokaiPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/1/11/Qwit.png',
+    'yokaiPic'  : 'https://i.ibb.co/fMKmKpz/Qwit.png',
     'yokaiPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/1/11/Qwit.png/revision/latest/scale-to-width-down/150',
     'medalliumBio'  : `He gives up on everything he tries and won't do the same thing twice. He has a lot of experience at doing things once.`
   },
@@ -340,9 +359,9 @@ let yokai = {
     'name'  : 'Wazzat',
     'tribe' : 'Mysterious',
     'effect'  : 'Those inspirited by Wazzat can have memories "eaten", causing them to become forgetful.',
-    'medalPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/f/f8/Wazzat_NM.jpg',
+    'medalPic'  : 'https://i.ibb.co/ZSSxQsZ/Wazzat-NM.jpg',
     'medalPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/f/f8/Wazzat_NM.jpg/revision/latest/scale-to-width-down/150',
-    'yokaiPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/7/78/Wazzat_artwork.png',
+    'yokaiPic'  : 'https://i.ibb.co/1L6bV2V/Wazzat-artwork.png',
     'yokaiPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/7/78/Wazzat_artwork.png/revision/latest/scale-to-width-down/150',
     'medalliumBio'  : `He fits snuggly on your head then devours your memories. It can be nice to forget the bad ones... or to just wear a hat.`
   },
@@ -350,9 +369,9 @@ let yokai = {
     'name'  : 'Dummkap',
     'tribe' : 'Mysterious',
     'effect'  : 'Those inspirited by Dummkap act very foolishly.',
-    'medalPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/4/48/Dummkap_NM.jpg',
+    'medalPic'  : 'https://i.ibb.co/NCB2tFp/Dummkap-NM.jpg',
     'medalPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/4/48/Dummkap_NM.jpg/revision/latest/scale-to-width-down/150',
-    'yokaiPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/b/be/Dummkap.png',
+    'yokaiPic'  : 'https://i.ibb.co/m4YCf0T/Dummkap.png',
     'yokaiPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/b/be/Dummkap.png/revision/latest/scale-to-width-down/150',
     'medalliumBio'  : `This hat Yo-kai can make geniuses into dreamy fools. A foolish life can be more fun...but would you even realize if it were?!`
   },
@@ -360,9 +379,9 @@ let yokai = {
     'name'  : 'Lafalotta',
     'tribe' : 'Mysterious',
     'effect'  : 'Lafalotta absorbs laughter that would have been heard from a joke, making it seem bad.',
-    'medalPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/1/1d/Lafalotta_NM.jpg',
+    'medalPic'  : 'https://i.ibb.co/5K3zm1y/Lafalotta-NM.jpg',
     'medalPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/1/1d/Lafalotta_NM.jpg/revision/latest/scale-to-width-down/150',
-    'yokaiPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/2/26/Lafalotta_Art.png',
+    'yokaiPic'  : 'https://i.ibb.co/sHZkYJ0/Lafalotta-Art.png',
     'yokaiPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/2/26/Lafalotta_Art.png/revision/latest/scale-to-width-down/150',
     'medalliumBio'  : `This Yo-kai sucks the laughter and fun out of a situation and keeps all the laughs for herself.`
   },
@@ -370,9 +389,9 @@ let yokai = {
     'name'  : 'Blips',
     'tribe' : 'Mysterious',
     'effect'  : 'Those inspirited by Blips have blue lips.',
-    'medalPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/3/3e/Blips_NM.jpg',
+    'medalPic'  : 'https://i.ibb.co/S6Fg6wf/Blips-NM.jpg',
     'medalPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/3/3e/Blips_NM.jpg/revision/latest/scale-to-width-down/150',
-    'yokaiPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/8/86/Blips_official_art.png',
+    'yokaiPic'  : 'https://i.ibb.co/0VNrqJJ/Blips-official-art.png',
     'yokaiPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/8/86/Blips_official_art.png/revision/latest/scale-to-width-down/150',
     'medalliumBio'  : `If you see someone get out of a pool with blue lips, they might just be inspirited by Blips...`
   },
@@ -380,9 +399,9 @@ let yokai = {
     'name'  : 'Tattletell',
     'tribe' : 'Mysterious',
     'effect'  : 'Those inspirited by Tattletell will reveal their secrets.',
-    'medalPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/b/b1/Tattletell_NM.jpg',
+    'medalPic'  : 'https://i.ibb.co/vxMKG2K/Tattletell-NM.jpg',
     'medalPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/b/b1/Tattletell_NM.jpg/revision/latest/scale-to-width-down/150',
-    'yokaiPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/3/33/Tattletell.png',
+    'yokaiPic'  : 'https://i.ibb.co/nR685vV/Tattletell.png',
     'yokaiPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/3/33/Tattletell.png/revision/latest/scale-to-width-down/150',
     'medalliumBio'  : `When Tattletell inspirits you, you'll feel inspired to TELL, TELL, TELL all of your secrets.`
   },
@@ -390,9 +409,9 @@ let yokai = {
     'name'  : 'Tattlecast',
     'tribe' : 'Mysterious',
     'effect'  : 'Those inspiritied by Tattlecast will should their biggest secrets to town, cities or even countries.',
-    'medalPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/8/83/Tattlecast_NM.jpg',
+    'medalPic'  : 'https://i.ibb.co/6HBHV4q/Tattlecast-NM.jpg',
     'medalPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/8/83/Tattlecast_NM.jpg/revision/latest/scale-to-width-down/150',
-    'yokaiPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/e/eb/Tattlecast2.png',
+    'yokaiPic'  : 'https://i.ibb.co/vjNxN7K/Tattlecast2.png',
     'yokaiPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/e/eb/Tattlecast2.png/revision/latest/scale-to-width-down/150',
     'medalliumBio'  : `She uses her massive speakers to broadcast scandalous secrets to the whole city. Hope they aren't yours!`
   },
@@ -400,9 +419,9 @@ let yokai = {
     'name'  : 'Skranny',
     'tribe' : 'Mysterious',
     'effect'  : 'Those inspirited by Skranny will be affected in unknown ways.',
-    'medalPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/7/72/Skranny_NM.jpg',
+    'medalPic'  : 'https://i.ibb.co/j5zrpFZ/Skranny-NM.jpg',
     'medalPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/7/72/Skranny_NM.jpg/revision/latest/scale-to-width-down/150',
-    'yokaiPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/7/7a/Skranny_artwork.png',
+    'yokaiPic'  : 'https://i.ibb.co/BKV5mpX/Skranny-artwork.png',
     'yokaiPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/7/7a/Skranny_artwork.png/revision/latest/scale-to-width-down/150',
     'medalliumBio'  : `Only Tattletells who discover their love of heavy metal music can don the skull makeup and become a Skranny.`
   },
@@ -410,9 +429,9 @@ let yokai = {
     'name'  : 'Cupistol',
     'tribe' : 'Mysterious',
     'effect'  : 'Anyone Cupistol shoots will love those who it inspirits.',
-    'medalPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/e/eb/Cupistol_NM.jpg',
+    'medalPic'  : 'https://i.ibb.co/jvXYDN3/Cupistol-NM.jpg',
     'medalPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/e/eb/Cupistol_NM.jpg/revision/latest/scale-to-width-down/150',
-    'yokaiPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/c/c7/Cupistoartworkl.png',
+    'yokaiPic'  : 'https://i.ibb.co/jVMFBJR/Cupistoartworkl.png',
     'yokaiPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/c/c7/Cupistoartworkl.png/revision/latest/scale-to-width-down/150',
     'medalliumBio'  : `This debonair Yo-kai is quite a hit with the ladies. Anyone he shoots will love you. He's just the greatest! *swoon*`
   },
@@ -420,9 +439,9 @@ let yokai = {
     'name'  : 'Casanuva',
     'tribe' : 'Mysterious',
     'effect'  : 'Those inspirited by Casanuva will be extremely popular and very noticeable.',
-    'medalPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/e/e3/CasanuvaNM2.png',
+    'medalPic'  : 'https://i.ibb.co/gFXyFC2/Casanuva2.png',
     'medalPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/e/e3/CasanuvaNM2.png/revision/latest/scale-to-width-down/150',
-    'yokaiPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/c/c8/Casanuva2.png',
+    'yokaiPic'  : 'https://i.ibb.co/Dbq85T1/Casanuva-NM2.png',
     'yokaiPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/c/c8/Casanuva2.png/revision/latest/scale-to-width-down/150',
     'medalliumBio'  : `This narcissist makes every lady he sees fall in love with him, regardless of appearance.`
   },
@@ -430,9 +449,9 @@ let yokai = {
     'name'  : 'Casanono',
     'tribe' : 'Mysterious',
     'effect'  : 'Those inspirited by Casanono will be unpopular and disliked by all.',
-    'medalPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/f/fe/CasanonoNM2.png',
+    'medalPic'  : 'https://i.ibb.co/Ms47bKR/Casanono-NM2.png',
     'medalPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/f/fe/CasanonoNM2.png/revision/latest/scale-to-width-down/150',
-    'yokaiPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/c/ca/Motenasu.png',
+    'yokaiPic'  : 'https://i.ibb.co/nLJr30H/Motenasu.png',
     'yokaiPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/c/ca/Motenasu.png/revision/latest/scale-to-width-down/150',
     'medalliumBio'  : `Casanuva's opposite. He just can't get a date no matter what! He'll make you unpopular too. Best to give him some space.`
   },
@@ -440,9 +459,9 @@ let yokai = {
     'name'  : 'Signibble',
     'tribe' : 'Mysterious',
     'effect'  : 'Those inspirited by Signibble will be affected in unknown ways.',
-    'medalPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/9/96/Signibble_NM.jpg',
+    'medalPic'  : 'https://i.ibb.co/hBG3tnW/Signibble-NM.jpg',
     'medalPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/9/96/Signibble_NM.jpg/revision/latest/scale-to-width-down/150',
-    'yokaiPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/a/a6/Signibble.png',
+    'yokaiPic'  : 'https://i.ibb.co/kBMKP9p/Signibble.png',
     'yokaiPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/a/a6/Signibble.png/revision/latest/scale-to-width-down/150',
     'medalliumBio'  : `A mischievous Yo-kai that snacks on radio waves in the air. You'll lose a few bars on your phone when he's around.`
   },
@@ -450,9 +469,9 @@ let yokai = {
     'name'  : 'Signiton',
     'tribe' : 'Mysterious',
     'effect'  : 'Those inspirited by Signibble will be affected in unknown ways.',
-    'medalPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/5/53/Signiton_NM.jpg',
+    'medalPic'  : 'https://i.ibb.co/QfnvmbL/Signiton-NM.jpg',
     'medalPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/5/53/Signiton_NM.jpg/revision/latest/scale-to-width-down/150',
-    'yokaiPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/7/7d/Signiton2.png',
+    'yokaiPic'  : 'https://i.ibb.co/Js2X1YL/Signiton2.png',
     'yokaiPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/7/7d/Signiton2.png/revision/latest/scale-to-width-down/150',
     'medalliumBio'  : `Signiton is almost a deity for those in desperate need of a wireless signal. He can boost your reception if you ask.`
   },
@@ -460,9 +479,9 @@ let yokai = {
     'name'  : 'Statiking',
     'tribe' : 'Mysterious',
     'effect'  : 'Those inspirited by Statiking will be affected in unknown ways.',
-    'medalPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/f/ff/Statiking_NM.jpg',
+    'medalPic'  : 'https://i.ibb.co/sRSS8Nb/Statiking-NM.jpg',
     'medalPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/f/ff/Statiking_NM.jpg/revision/latest/scale-to-width-down/150',
-    'yokaiPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/f/fa/Statiking2.png',
+    'yokaiPic'  : 'https://i.ibb.co/xCN9Nmb/Statiking2.png',
     'yokaiPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/f/fa/Statiking2.png/revision/latest/scale-to-width-down/150',
     'medalliumBio'  : `He's pretty lazy, but if he got motivated, his power would fix a ton of the world's energy problems.`
   },
@@ -470,9 +489,9 @@ let yokai = {
     'name'  : 'Mirapo',
     'tribe' : 'Mysterious',
     'effect'  : 'Those inspirited by Mirapo will be affected in unknown ways.',
-    'medalPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/9/94/Mirapo_NM.jpg',
+    'medalPic'  : 'https://i.ibb.co/XsdqnF4/Mirapo-NM.jpg',
     'medalPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/9/94/Mirapo_NM.jpg/revision/latest/scale-to-width-down/150',
-    'yokaiPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/f/fb/Mirapo.png',
+    'yokaiPic'  : 'https://i.ibb.co/cKWJpMg/Mirapo.png',
     'yokaiPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/f/fb/Mirapo.png/revision/latest/scale-to-width-down/150',
     'medalliumBio'  : `An ancient mirror that embodied a soul and became a Yo-kai. It can make a portal between two mirrors.`
   },
@@ -480,9 +499,9 @@ let yokai = {
     'name'  : 'Mircle',
     'tribe' : 'Mysterious',
     'effect'  : 'Those inspirited by Mircle are affected in unknown ways.',
-    'medalPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/1/1b/Mircle_NM.jpg',
+    'medalPic'  : 'https://i.ibb.co/ypcRq0P/Mircle-NM.jpg',
     'medalPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/1/1b/Mircle_NM.jpg/revision/latest/scale-to-width-down/150',
-    'yokaiPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/a/a8/Mircle_Art.png',
+    'yokaiPic'  : 'https://i.ibb.co/7yVt2sr/Mircle-Art.png',
     'yokaiPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/a/a8/Mircle_Art.png/revision/latest/scale-to-width-down/150',
     'medalliumBio'  : `Mircle fills the space behind mirrors with evil by renting it out to a bad Yo-kai... at a wicked high rate, naturally.`
   },
@@ -490,9 +509,9 @@ let yokai = {
     'name'  : 'Illoo',
     'tribe' : 'Mysterious',
     'effect'  : 'Those inspirited by Illoo are affected in unknown ways.',
-    'medalPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/3/3c/Illoo_NM.jpg',
+    'medalPic'  : 'https://i.ibb.co/rv9swLk/Illoo-NM.jpg',
     'medalPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/3/3c/Illoo_NM.jpg/revision/latest/scale-to-width-down/150',
-    'yokaiPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/a/a7/Illoo_artwork.png',
+    'yokaiPic'  : 'https://i.ibb.co/rxyPT80/Illoo-artwork.png',
     'yokaiPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/a/a7/Illoo_artwork.png/revision/latest/scale-to-width-down/150',
     'medalliumBio'  : `A caring teacher who uses illusions to simplify his lessons. He can make complex topics seem pretty accessible.`
   },
@@ -500,9 +519,9 @@ let yokai = {
     'name'  : 'Elloo',
     'tribe' : 'Mysterious',
     'effect'  : 'Those inspirited by Elloo are affected in unknown ways.',
-    'medalPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/7/7d/Elloo_NM.jpg',
+    'medalPic'  : 'https://i.ibb.co/z5VmdXC/Elloo-NM.jpg',
     'medalPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/7/7d/Elloo_NM.jpg/revision/latest/scale-to-width-down/150',
-    'yokaiPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/c/cb/Elloo2.png',
+    'yokaiPic'  : 'https://i.ibb.co/5sf2k6J/Elloo2.png',
     'yokaiPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/c/cb/Elloo2.png/revision/latest/scale-to-width-down/150',
     'medalliumBio'  : `A friendly old Yo-kai who can dissipate into a haze. He's Illoo's brother.`
   },
@@ -510,9 +529,9 @@ let yokai = {
     'name'  : 'Alloo',
     'tribe' : 'Mysterious',
     'effect'  : 'Those inspirited by Alloo wander into forests, crowds, buildings, etc.',
-    'medalPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/7/7f/Alloo_NM.jpg',
+    'medalPic'  : 'https://i.ibb.co/GR5cTfM/Alloo-NM.jpg',
     'medalPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/7/7f/Alloo_NM.jpg/revision/latest/scale-to-width-down/150',
-    'yokaiPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/a/a3/Alloo_Art.png',
+    'yokaiPic'  : 'https://i.ibb.co/QJ3HWLp/Alloo-Art.png',
     'yokaiPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/a/a3/Alloo_Art.png/revision/latest/scale-to-width-down/150',
     'medalliumBio'  : `He wanders the world without a goal. It's an absolute miracle if the three brothers Illoo, Elloo, and Alloo all meet up.`
   },
@@ -520,9 +539,9 @@ let yokai = {
     'name'  : 'Espy',
     'tribe' : 'Mysterious',
     'effect'  : `Those inspirited by Espy can read people's minds, reciting people's thoughts before they say them.`,
-    'medalPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/9/98/Espy_NM.jpg',
+    'medalPic'  : 'https://i.ibb.co/vXFNmqJ/Espy-NM.jpg',
     'medalPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/9/98/Espy_NM.jpg/revision/latest/scale-to-width-down/150',
-    'yokaiPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/5/57/Espy2.png',
+    'yokaiPic'  : 'https://i.ibb.co/yQSrLrY/Espy2.png',
     'yokaiPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/5/57/Espy2.png/revision/latest/scale-to-width-down/150',
     'medalliumBio'  : `Espy gets a kick out of reading people's minds. It's totally not fair that no one can read hers... and now she knows that too.`
   },
@@ -530,9 +549,9 @@ let yokai = {
     'name'  : 'Infour',
     'tribe' : 'Mysterious',
     'effect'  : 'Those inspirited by Infour are affected in unknown ways.',
-    'medalPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/1/10/Infour_NM.jpg',
+    'medalPic'  : 'https://i.ibb.co/JvhcnN7/Infour-NM.jpg',
     'medalPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/1/10/Infour_NM.jpg/revision/latest/scale-to-width-down/150',
-    'yokaiPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/6/66/Infour2.png',
+    'yokaiPic'  : 'https://i.ibb.co/Km5w9xK/Infour2.png',
     'yokaiPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/6/66/Infour2.png/revision/latest/scale-to-width-down/150',
     'medalliumBio'  : `Her four eyes can see a person's age, name, gender, and birthday, but she can't read minds. It's still kinda creepy, though.`
   },
@@ -540,9 +559,9 @@ let yokai = {
     'name'  : 'Tengu',
     'tribe' : 'Mysterious',
     'effect'  : 'Those inspirited by Tengu are affected in unknown ways.',
-    'medalPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/d/dc/Tengu_NM.jpg',
+    'medalPic'  : 'https://i.ibb.co/fxJps38/Tengu-NM.jpg',
     'medalPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/d/dc/Tengu_NM.jpg/revision/latest/scale-to-width-down/150',
-    'yokaiPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/0/03/TenguArtwork.png',
+    'yokaiPic'  : 'https://i.ibb.co/DLS910W/Tengu-Artwork.png',
     'yokaiPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/0/03/TenguArtwork.png/revision/latest/scale-to-width-down/150',
     'medalliumBio'  : `A popular tengu who controls the power of wind. Apparently all that power comes from his number-one fan.`
   },
@@ -550,9 +569,9 @@ let yokai = {
     'name'  : 'Flengu',
     'tribe' : 'Mysterious',
     'effect'  : 'Those inspirited by Flengu are affected in unknown ways.',
-    'medalPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/e/ef/Flengu.jpg',
+    'medalPic'  : 'https://i.ibb.co/b5PkVGw/Flengu.jpg',
     'medalPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/e/ef/Flengu.jpg/revision/latest/scale-to-width-down/150',
-    'yokaiPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/e/e6/Flengu.png',
+    'yokaiPic'  : 'https://i.ibb.co/6vB0m17/Flengu.png',
     'yokaiPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/e/e6/Flengu.png/revision/latest/scale-to-width-down/150',
     'medalliumBio'  : `A Tengu with hair the color of fire. Legend says it causes a drought when humanity needs to be taught a lesson.`
   },
@@ -560,9 +579,9 @@ let yokai = {
     'name'  : 'Kyubi',
     'tribe' : 'Mysterious',
     'effect'  : 'Those inspirited by Kyubi are affected in unknown ways.',
-    'medalPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/7/74/KyubiNM2.png',
+    'medalPic'  : 'https://i.ibb.co/p0MkYxR/KyubiNM2.png',
     'medalPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/7/74/KyubiNM2.png/revision/latest/scale-to-width-down/150',
-    'yokaiPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/4/43/Kyubi.png',
+    'yokaiPic'  : 'https://i.ibb.co/4NTNCy4/Kyubi.png',
     'yokaiPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/4/43/Kyubi.png/revision/latest/scale-to-width-down/150',
     'medalliumBio'  : `This Fox Yo-kai is one of the strongest out of every Yo-kai. He can easily make a volcano erupt.`
   },
@@ -570,9 +589,9 @@ let yokai = {
     'name'  : 'Frostail',
     'tribe' : 'Mysterious',
     'effect'  : 'Those inspirited by Frostail are affected in unknown ways.',
-    'medalPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/8/83/Frostail_NM.jpg',
+    'medalPic'  : 'https://i.ibb.co/GWRrZm0/Exif-JPEG-PICTURE.jpg',
     'medalPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/8/83/Frostail_NM.jpg/revision/latest/scale-to-width-down/150',
-    'yokaiPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/8/86/Frostail_Art.png',
+    'yokaiPic'  : 'https://i.ibb.co/726hg57/Frostail-Art.png',
     'yokaiPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/8/86/Frostail_Art.png/revision/latest/scale-to-width-down/150',
     'medalliumBio'  : "Even a single hair of this rare Yo-kai's silvery coat can bring generations of good luck!"
   },
@@ -580,9 +599,9 @@ let yokai = {
     'name'  : 'Komashura',
     'tribe' : 'Mysterious',
     'effect'  : 'Those inspirited by Komashura are affected in unknown ways.',
-    'medalPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/2/2b/Komashura_NM.jpg',
+    'medalPic'  : 'https://i.ibb.co/VJfcjyx/Komashura-NM.jpg',
     'medalPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/2/2b/Komashura_NM.jpg/revision/latest/scale-to-width-down/150',
-    'yokaiPic'  : 'https://static.wikia.nocookie.net/yokaiwatch/images/c/c4/Shurakoma.png',
+    'yokaiPic'  : 'https://i.ibb.co/nsmkFdN/Shurakoma.png',
     'yokaiPicThumb' : 'https://static.wikia.nocookie.net/yokaiwatch/images/c/c4/Shurakoma.png/revision/latest/scale-to-width-down/150',
     'medalliumBio'  : "A legendary Komasan with the heart of a greater demon. He scorches his foes with infernal flame."
   },
@@ -2110,23 +2129,3 @@ let yokai = {
     'medalliumBio'  : 'Unknown Yokai is not in Medallium.'
   }
 }
-
-
-
-
-app.get('/', (request, response) => {
-  response.sendFile(__dirname + '/index.html');
-})
-
-app.get('/api/yokai/:yokaiName', (request, response) => {
-  const yokaiNm = request.params.yokaiName.toLowerCase();
-  if (yokai[yokaiNm]) {
-    response.json(yokai[yokaiNm]);
-  } else {
-    response.json(yokai['unknown']);
-  }
-})
-
-app.listen(process.env.PORT || PORT, () => {
-  console.log(`Serving running on port ${PORT}`)
-})
