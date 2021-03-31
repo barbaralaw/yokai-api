@@ -29,9 +29,9 @@ let yokai = {
     'name' : 'Whisper',
     'tribe' : 'Slippery',
     'medalPic' : 'https://static.wikia.nocookie.net/yo-kai/images/0/0c/MEDAL_Whisper_01.png/revision/latest/scale-to-width-down/955?cb=20160111004442',
-    'yokaiPic' : 'https://static.wikia.nocookie.net/yokaiwatch/images/2/29/YW_-_Whisper.png/revision/latest/scale-to-width-down/688?cb=20200101174803'
+    'yokaiPic' : 'https://static.wikia.nocookie.net/yokaiwatch/images/2/29/YW_-_Whisper.png/revision/latest/scale-to-width-down/688?cb=20200101174803',
     'medalliumBio' : `The self-proclaimed Yo-kai butler to the stars! He loves to give information on every Yo-kai, but in fact he's really more of a know nothing, who gets his information from his trusty Yo-kai Pad.`
-  }
+  },
   'pandle' : {
     'name'  : 'Pandle',
     'tribe' : 'Brave',
